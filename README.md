@@ -13,8 +13,10 @@
 
 ## Usage
 
+In gitpainer/scheduler.py change the repository settings for the git push command.
+
 ```sh
-python -m gitpainter
+python -m gitpainter/scheduler.py 
 ```
 
 ## Author
