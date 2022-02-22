@@ -1,8 +1,7 @@
-
-import schedule
 import time
 import os
 
+token = os.getenv('token', '')
 pattern = [3, 3, 0, 0, 3, 3, 0, 0, 0, 3, 3, 0, 0, 3]
 pattern_counter = 0
 pattern_length = len(pattern)
@@ -17,7 +16,7 @@ def color_density(weight):
         # append new line to logs file
         with open('logs/painting.txt', 'a') as file:
             file.write(str(w) + '\n')
-            os.system("git add * && git commit -m \"{}\" && git push -u origin main".format(str(w)))
+            os.system("git add * && git commit -m \"{}\" && git push https://{}@github.com/gitpainter/painter".format(str(w), token))
             time.sleep(5)
 
 
@@ -36,11 +35,4 @@ def paint_my_git():
         pattern_counter = 0 # repeat pattern
         return
 
-
-# schedule.every().day.at("08:30").do(paint_my_git)
-schedule.every(60).seconds.do(paint_my_git)
-
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+paint_my_git()
