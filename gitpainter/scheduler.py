@@ -16,6 +16,7 @@ def color_density(weight):
         # append new line to logs file
         with open('logs/painting.txt', 'a') as file:
             file.write(str(w) + '\n')
+            print(token)
             os.system("git add * && git commit -m \"{}\" && git push https://{}@github.com/gitpainter/painter".format(str(w), token))
             time.sleep(5)
 
