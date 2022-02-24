@@ -1,7 +1,7 @@
 import time
 import os
-# Rename `os.environ` to `env` for nicer code
 from os import environ as env
+import schedule
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -21,7 +21,6 @@ def color_density(weight):
         # append new line to logs file
         with open('logs/painting.txt', 'a') as file:
             file.write(str(w) + '\n')
-            print('token', token)
             os.system("git add * && git commit -m \"{}\" && git push https://{}@github.com/gitpainter/painter".format(str(w), token))
             time.sleep(5)
 
@@ -41,4 +40,11 @@ def paint_my_git():
         pattern_counter = 0 # repeat pattern
         return
 
-paint_my_git()
+schedule.every().day.at("17:03").do(paint_my_git)
+schedule.every(10).seconds.do(paint_my_git)
+
+
+while True:
+    schedule.run_pending()
+    print("Gitpainter ticking")
+    time.sleep(1)
