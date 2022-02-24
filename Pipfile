@@ -8,6 +8,7 @@ nose = "*"
 requests = "*"
 Sphinx = "*"
 schedule = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

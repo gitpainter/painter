@@ -1,7 +1,12 @@
 import time
 import os
+# Rename `os.environ` to `env` for nicer code
+from os import environ as env
 
-token = os.getenv('token', '')
+from dotenv import load_dotenv
+load_dotenv()
+
+token = env['token']
 pattern = [3, 3, 0, 0, 3, 3, 0, 0, 0, 3, 3, 0, 0, 3]
 pattern_counter = 0
 pattern_length = len(pattern)
