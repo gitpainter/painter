@@ -6,6 +6,8 @@ import schedule
 from dotenv import load_dotenv
 load_dotenv()
 
+import datetime
+
 token = env['token']
 pattern = [3, 3, 0, 0, 3, 3, 0, 0, 0, 3, 3, 0, 0, 3]
 pattern_counter = 0
@@ -40,11 +42,13 @@ def paint_my_git():
         pattern_counter = 0 # repeat pattern
         return
 
-schedule.every().day.at("17:03").do(paint_my_git)
-schedule.every(10).seconds.do(paint_my_git)
+schedule.every().day.at("17:13").do(paint_my_git)
+#schedule.every(10).seconds.do(paint_my_git)
 
 
 while True:
     schedule.run_pending()
-    print("Gitpainter ticking")
-    time.sleep(1)
+    now = datetime.datetime.now()
+    print ("Current date and time : ")
+    print (now.strftime("%Y-%m-%d %H:%M:%S"))
+    time.sleep(10)
